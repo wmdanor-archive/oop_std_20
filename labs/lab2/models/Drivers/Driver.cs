@@ -9,7 +9,7 @@ using lab1.models.Vehicles;
 
 namespace lab1.models.Drivers
 {
-    class Driver : IPerson, IVehicleOwner
+    class Driver : IPerson, IVehicleOwner, IDrivingExperience
     {
         private readonly static double general_luck;
         protected static uint drivers_amount;
@@ -29,7 +29,7 @@ namespace lab1.models.Drivers
             }
         }
 
-        public string FullName { get; set; }
+        public string Name { get; set; }
 
         private bool is_alive;
         public bool IsAlive { get => is_alive; }
@@ -65,7 +65,7 @@ namespace lab1.models.Drivers
 
         public Driver(string full_name, uint age) : this()
         {
-            this.FullName = full_name;
+            this.Name = full_name;
             this.age = age;
         }
 
@@ -98,7 +98,7 @@ namespace lab1.models.Drivers
             return true;
         }
 
-        protected uint OverrallExperience
+        uint IDrivingExperience.OverrallExperience
         {
             get
             {
@@ -110,6 +110,9 @@ namespace lab1.models.Drivers
                 return result;
             }
         }
+
+        uint IPerson.OverrallExperience { get; set; }
+
 
         private SortedDictionary<string, AVehicle> vehicles;
 
@@ -145,7 +148,7 @@ namespace lab1.models.Drivers
             double factor = GetDrivinngProcessFactor() * crash_factor;
             double fate = rand.NextDouble() * 100;
             bool result = fate <= factor;
-            return true;    // подкрутка для демонстрации
+            //return true;    // подкрутка для демонстрации
             return result;
         }
 
@@ -154,7 +157,7 @@ namespace lab1.models.Drivers
             double factor = GetDrivinngProcessFactor() * death_factor;
             double fate = rand.NextDouble() * 100;
             bool result = fate <= factor;
-            return true;    // подкрутка для демонстрации
+            //return true;    // подкрутка для демонстрации
             return result;
         }
 

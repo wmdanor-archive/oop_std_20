@@ -30,6 +30,12 @@ namespace lab1
             DriverLicense lic3 = DriverLicense.CreateDriverLicense(dr3);
             if (lic3 == null) Console.WriteLine("lic3 is null");
 
+            IPerson dr5 = new ExperiencedDriver("p", 35);
+            IDrivingExperience dr6 = new ExperiencedDriver("r", 34);
+
+            Console.WriteLine(dr5.OverrallExperience);
+            Console.WriteLine(dr6.OverrallExperience);
+
             AVehicle veh1 = new Motorcicle("hf7834h87h32487hc8", Categories.A1);
             AVehicle veh2 = new Car("hjkfdjkadhkjf2", Categories.B, "Lul car", 0, 1596, 88, false);
 

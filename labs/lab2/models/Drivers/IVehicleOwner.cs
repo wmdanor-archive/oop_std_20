@@ -9,7 +9,7 @@ using lab1.models.Vehicles;
 namespace lab1.models.Drivers
 {
     interface IVehicleOwner
-    {
+    {     
         SortedDictionary<string, AVehicle> Vehicles { get; }
 
         void AddVehicle(AVehicle vehicle);

@@ -62,6 +62,7 @@
     <Compile Include="models\Drivers\AmateurDriver.cs" />
     <Compile Include="models\Drivers\Driver.cs" />
     <Compile Include="models\Drivers\ExperiencedDriver.cs" />
+    <Compile Include="models\Drivers\IDrivingExperience.cs" />
     <Compile Include="models\Drivers\IPerson.cs" />
     <Compile Include="models\Drivers\IVehicleOwner.cs" />
     <Compile Include="models\Other\Categories.cs" />

@@ -9,8 +9,10 @@ namespace lab1.models.Drivers
     interface IPerson
     {
         uint Age { get; set; }
-        string FullName { get; set; }
+        string Name { get; set; }
         bool IsAlive { get; }
+
+        uint OverrallExperience { get; set; }
 
         void Death();
     }
