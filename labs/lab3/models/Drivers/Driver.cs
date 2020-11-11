@@ -26,7 +26,7 @@ namespace lab1.models.Drivers
 
         protected SortedDictionary<Categories, uint> time_experience;
 
-        private SortedDictionary<string, AVehicle> vehicles;
+        private VehicleCollection vehicles;
 
 
         #region Constructors 
@@ -83,8 +83,8 @@ namespace lab1.models.Drivers
         public DrivingResult Drive(string vin_code, uint distance)
         {
             if (IsAlive == false) return DrivingResult.AlreadyDead;
-            AVehicle veh = null;
-            if (!vehicles.TryGetValue(vin_code, out veh)) return DrivingResult.NoVehicle;
+            AVehicle veh = vehicles.Find(vin_code);
+            if (veh == null) return DrivingResult.NoVehicle;
             if (!veh.Ride(distance)) return DrivingResult.VehicleBroken;
             if (DrivingProcessResult())
             {
@@ -194,19 +194,17 @@ namespace lab1.models.Drivers
 
         public void AddVehicle(AVehicle vehicle)
         {
-            if (vehicles.ContainsKey(vehicle.VinCode)) return;
-            else vehicles[vehicle.VinCode] = vehicle;
+            vehicles[vehicle.VinCode] = vehicle;
         }
 
         public AVehicle RemoveVehicle(string vin_code)
         {
-            AVehicle veh = null;
-            vehicles.TryGetValue(vin_code, out veh);
+            AVehicle veh = vehicles.Find(vin_code);
             vehicles.Remove(vin_code);
             return veh;
         }
 
-        public SortedDictionary<string, AVehicle> Vehicles { get => vehicles; }
+        public VehicleCollection Vehicles { get => vehicles; }
 
         #endregion
     }

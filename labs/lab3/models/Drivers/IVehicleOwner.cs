@@ -14,6 +14,6 @@ namespace lab1.models.Drivers
 
         AVehicle RemoveVehicle(string vin_code);
 
-        SortedDictionary<string, AVehicle> Vehicles { get; }
+       VehicleCollection Vehicles { get; }
     }
 }

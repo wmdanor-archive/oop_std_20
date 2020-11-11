@@ -41,6 +41,11 @@ namespace lab1
 
             dr1.AddVehicle(veh1);
 
+            foreach (AVehicle veh in dr1.Vehicles)
+            {
+                Console.WriteLine(veh.VinCode);
+            }
+
             Console.WriteLine("event, delegate test");
             Console.WriteLine("dr1 is_alive - {0}", dr1.IsAlive);
             Console.WriteLine("dr1 license is active - {0}", lic1.IsActive);
