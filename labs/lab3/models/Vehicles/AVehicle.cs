@@ -8,6 +8,7 @@ using lab1.models.Other;
 
 namespace lab1.models.Vehicles
 {
+    [Serializable]
     public abstract class AVehicle : IComparable<AVehicle>
     {
         public int CompareTo(AVehicle other)

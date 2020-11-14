@@ -9,7 +9,8 @@ using lab1.models.Vehicles;
 
 namespace lab1.models.Vehicles
 {
-    public class VehicleCollection : IEnumerable
+    [Serializable]
+    public class VehicleCollection : ICollection, IEnumerable
     {
         private AVehicle[] vehicles;
         private int size;
@@ -17,6 +18,8 @@ namespace lab1.models.Vehicles
         private const int default_capacity = 4;
 
         static readonly AVehicle[] empty_array = new AVehicle[0];
+
+        private Object sync_root;
 
         public VehicleCollection()
         {
@@ -161,6 +164,37 @@ namespace lab1.models.Vehicles
             {
                 Array.Clear(vehicles, 0, size);
                 size = 0;
+            }
+        }
+
+        public bool IsSynchronized { get => false; }
+
+        public object SyncRoot
+        {
+            get
+            {
+                if (sync_root == null)
+                {
+                    System.Threading.Interlocked.CompareExchange<Object>(ref sync_root, new Object(), null);
+                }
+                return sync_root;
+            }
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+            if ((array != null) && (array.Rank != 1))
+            {
+                throw new ArgumentException("Multidimnesional arrays are not supported");
+            }
+
+            try
+            {
+                Array.Copy(vehicles, 0, array, index, size);
+            }
+            catch (ArrayTypeMismatchException)
+            {
+                throw new ArgumentException("Invalid array type");
             }
         }
 

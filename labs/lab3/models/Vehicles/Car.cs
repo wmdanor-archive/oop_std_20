@@ -8,6 +8,7 @@ using lab1.models.Other;
 
 namespace lab1.models.Vehicles
 {
+    [Serializable]
     public class Car : AVehicle
     {
         public Car(string vin_code, Categories category, string name, uint mileage_km, uint engine_displacement, uint engine_power_hp, bool is_broken) :

@@ -9,6 +9,7 @@ using lab1.models.Drivers;
 
 namespace lab1.models.DriverLicense
 {
+    [Serializable]
     public class DriverLicense
     {
         private readonly Driver owner;

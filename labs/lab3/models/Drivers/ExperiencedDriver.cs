@@ -10,6 +10,7 @@ using lab1.models.UserDefinedExceptions;
 
 namespace lab1.models.Drivers
 {
+    [Serializable]
     public class ExperiencedDriver : AmateurDriver
     {
         #region Constructors

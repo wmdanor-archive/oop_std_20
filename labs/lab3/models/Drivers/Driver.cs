@@ -9,13 +9,20 @@ using lab1.models.Vehicles;
 
 namespace lab1.models.Drivers
 {
+    [Serializable]
     public class Driver : IPerson, IVehicleOwner, IDrivingExperience
     {
+        [NonSerialized]
         private readonly static double general_luck;
+        [NonSerialized]
         protected static uint drivers_amount;
+        [NonSerialized]
         protected static Random rand;
+        [NonSerialized]
         private const double crash_factor = 0.00548;
+        [NonSerialized]
         private const double death_factor = 28.3;
+        [NonSerialized]
         private const double add_factor = 0.20889;
 
         public delegate void DriverDeathDelegate();

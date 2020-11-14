@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 using lab1.models.Drivers;
 using lab1.models.Vehicles;
@@ -55,6 +57,20 @@ namespace lab1
             Console.WriteLine("dr1 is driving - {0}", dr1.Drive("hf7834h87h32487hc8", 10));
             Console.WriteLine("dr1 is_alive - {0}", dr1.IsAlive);
             Console.WriteLine("dr1 license is active - {0}", lic1.IsActive);
+
+            // serialization
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream("data.dat", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, new Driver[] { dr1, dr2, (Driver)dr6 });
+            }
+
+            // десериализация из файла people.dat
+            using (FileStream fs = new FileStream("data.dat", FileMode.OpenOrCreate))
+            {
+                Driver[] drs = (Driver[])formatter.Deserialize(fs);
+            }
 
             Console.WriteLine("\nPress any key");
             Console.ReadKey();
