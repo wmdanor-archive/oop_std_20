@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab1.models.UserDefinedExceptions
 {
-    class SmallAgeException : Exception
+    public class SmallAgeException : Exception
     {
         public uint MinimalAge { get; }
         public uint InputAge { get; }

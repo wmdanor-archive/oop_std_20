@@ -8,7 +8,7 @@ using lab1.models.Other;
 
 namespace lab1.models.Vehicles
 {
-    class Motorcicle : AVehicle
+    public class Motorcicle : AVehicle
     {
         public Motorcicle(string vin_code, Categories category, string name, uint mileage_km, uint engine_displacement, uint engine_power_hp, bool is_broken) :
             base(vin_code, category, name, mileage_km, engine_displacement, engine_power_hp, is_broken)

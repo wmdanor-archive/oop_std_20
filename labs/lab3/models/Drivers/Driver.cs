@@ -9,7 +9,7 @@ using lab1.models.Vehicles;
 
 namespace lab1.models.Drivers
 {
-    class Driver : IPerson, IVehicleOwner, IDrivingExperience
+    public class Driver : IPerson, IVehicleOwner, IDrivingExperience
     {
         private readonly static double general_luck;
         protected static uint drivers_amount;
@@ -54,6 +54,8 @@ namespace lab1.models.Drivers
             //time_experience = new SortedDictionary<Categories, uint>();
             //vehicles = new SortedDictionary<string, AVehicle>();
             DriverDeathEvent += Death;
+            time_experience = new SortedDictionary<Categories, uint>();
+            vehicles = new VehicleCollection();
         }
 
         #endregion

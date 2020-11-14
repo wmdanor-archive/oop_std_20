@@ -9,7 +9,7 @@ using lab1.models.Vehicles;
 
 namespace lab1.models.Vehicles
 {
-    class VehicleCollection : IEnumerable
+    public class VehicleCollection : IEnumerable
     {
         private AVehicle[] vehicles;
         private int size;
@@ -17,6 +17,12 @@ namespace lab1.models.Vehicles
         private const int default_capacity = 4;
 
         static readonly AVehicle[] empty_array = new AVehicle[0];
+
+        public VehicleCollection()
+        {
+            vehicles = empty_array;
+            size = 0;
+        }
 
 
         public bool Contains(string vin_code)
@@ -39,7 +45,7 @@ namespace lab1.models.Vehicles
             }
             catch (ArgumentOutOfRangeException)
             {
-                return null;
+                return default(AVehicle);
             }
         }
 
@@ -58,14 +64,6 @@ namespace lab1.models.Vehicles
             }
             set
             {
-                for (int i = 0; i < vehicles.Length; i++)
-                {
-                    if (vehicles[i].VinCode == value.VinCode)
-                    {
-                        vehicles[i] = value;
-                        return;
-                    }
-                }
                 this.Add(value);
             }
         }
@@ -101,11 +99,19 @@ namespace lab1.models.Vehicles
             }
         }
 
-        public int Count { get => vehicles.Length; }
+        public int Count { get => size; }
 
         public void Add(AVehicle vehicle)
         {
-            if (size == vehicles.Length) EnsureCapacity(size + 1);  // vin code copy check
+            for (int i = 0; i < vehicles.Length; i++)
+            {
+                if (vehicles[i].VinCode == vehicle.VinCode)
+                {
+                    vehicles[i] = vehicle;
+                    return;
+                }
+            }
+            if (size == vehicles.Length) EnsureCapacity(size + 1);
             vehicles[size++] = vehicle;
         }
 
@@ -147,7 +153,15 @@ namespace lab1.models.Vehicles
         {
             size--;
             Array.Copy(vehicles, index + 1, vehicles, index, size - index);
-            vehicles[size] = null;
+            vehicles[size] = default(AVehicle); ;
+        }
+        public void Clear()
+        {
+            if (size > 0)
+            {
+                Array.Clear(vehicles, 0, size);
+                size = 0;
+            }
         }
 
 
@@ -158,52 +172,63 @@ namespace lab1.models.Vehicles
 
         public VehicleNumerator GetEnumerator()
         {
-            return new VehicleNumerator(vehicles);
-        }
-    }
-
-    class VehicleNumerator : IEnumerator
-    {
-        private AVehicle[] vehicles;
-        private int position = -1;
-        public VehicleNumerator(AVehicle[] vehicles)
-        {
-            this.vehicles = vehicles;
+            return new VehicleNumerator(this);
         }
 
-        object IEnumerator.Current { get => this.Current; }
+        //
 
-        public AVehicle Current
+        public struct VehicleNumerator : IEnumerator
         {
-            get
+            private VehicleCollection vehicles;
+            private int position;
+            private AVehicle current;
+            internal VehicleNumerator(VehicleCollection vehicles)
             {
-                try
+                this.vehicles = vehicles;
+                position = 0;
+                current = default(AVehicle); ;
+            }
+
+            object IEnumerator.Current {
+                get 
                 {
-                    return vehicles[position];
+                    if (position == 0 || position == vehicles.size + 1)
+                    {
+                        throw new InvalidOperationException("Enumerator operation can't happen");
+                    }
+                    return Current;
                 }
-                catch (IndexOutOfRangeException)
+            }
+
+            public AVehicle Current
+            {
+                get
                 {
-                    throw new IndexOutOfRangeException();
+                    return current;
                 }
             }
-        }
 
-        public bool MoveNext()
-        {
-            if (position < vehicles.Length - 1)
+            public bool MoveNext()
             {
-                position++;
-                return true;
+                if (position < vehicles.size)
+                {
+                    current = vehicles.vehicles[position];
+                    position++;
+                    return true;
+                }
+                else
+                {
+                    position = vehicles.size + 1;
+                    current = default(AVehicle); ;
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
-        }
 
-        public void Reset()
-        {
-            position = -1;
+            public void Reset()
+            {
+                position = 0;
+                current = default(AVehicle); ;
+            }
         }
     }
 }

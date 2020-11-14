@@ -9,7 +9,7 @@ using lab1.models.Drivers;
 
 namespace lab1.models.DriverLicense
 {
-    class DriverLicense
+    public class DriverLicense
     {
         private readonly Driver owner;
         private bool is_active = true;
@@ -39,7 +39,7 @@ namespace lab1.models.DriverLicense
         {
             this.owner = owner;
             owner.DriverDeathEvent += OnOwnerDeath;
-            //lcategories = new SortedDictionary<Categories, LicenseInfo>();
+            lcategories = new SortedDictionary<Categories, LicenseInfo>();
         }
 
         #endregion

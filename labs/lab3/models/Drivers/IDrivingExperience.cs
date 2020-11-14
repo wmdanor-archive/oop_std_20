@@ -8,7 +8,7 @@ using lab1.models.Other;
 
 namespace lab1.models.Drivers
 {
-    interface IDrivingExperience
+    public interface IDrivingExperience
     {
         bool SetCategoryTimeExperience(Categories category, uint experience);
         bool TimeExperienceUpdCheck(Categories category, uint experience);

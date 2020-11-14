@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab1.models.Drivers
 {
-    interface IPerson
+    public interface IPerson
     {
         uint Age { get; set; }
         string Name { get; set; }

@@ -39,6 +39,9 @@ namespace lab1
             AVehicle veh1 = new Motorcicle("hf7834h87h32487hc8", Categories.A1);
             AVehicle veh2 = new Car("hjkfdjkadhkjf2", Categories.B, "Lul car", 0, 1596, 88, false);
 
+            //VehicleCollection coll = new VehicleCollection();
+            //coll.Add(veh1);
+
             dr1.AddVehicle(veh1);
 
             foreach (AVehicle veh in dr1.Vehicles)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab1.models.UserDefinedExceptions
 {
-    class SmallExperienceException : Exception
+    public class SmallExperienceException : Exception
     {
         public uint MinimalExperience { get; }
         public uint InputExperience { get; }

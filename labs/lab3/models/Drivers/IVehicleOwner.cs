@@ -8,7 +8,7 @@ using lab1.models.Vehicles;
 
 namespace lab1.models.Drivers
 {
-    interface IVehicleOwner
+    public interface IVehicleOwner
     {     
         void AddVehicle(AVehicle vehicle);
 
