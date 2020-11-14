@@ -6,19 +6,24 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using lab1.models.Vehicles;
+using Newtonsoft.Json;
 
 namespace lab1.models.Vehicles
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Serializable]
     public class VehicleCollection : ICollection, IEnumerable
     {
+        [JsonProperty]
         private AVehicle[] vehicles;
+        [JsonProperty]
         private int size;
 
         private const int default_capacity = 4;
 
         static readonly AVehicle[] empty_array = new AVehicle[0];
 
+        [JsonProperty]
         private Object sync_root;
 
         public VehicleCollection()

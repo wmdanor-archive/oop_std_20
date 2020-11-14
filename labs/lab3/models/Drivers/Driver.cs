@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 using lab1.models.Other;
 using lab1.models.Vehicles;
 
 namespace lab1.models.Drivers
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Serializable]
     public class Driver : IPerson, IVehicleOwner, IDrivingExperience
     {
@@ -28,11 +30,15 @@ namespace lab1.models.Drivers
         public delegate void DriverDeathDelegate();
         public event DriverDeathDelegate DriverDeathEvent;
 
+        [JsonProperty]
         private uint age;
+        [JsonProperty]
         private bool is_alive = true;
 
+        [JsonProperty]
         protected SortedDictionary<Categories, uint> time_experience;
 
+        [JsonProperty]
         private VehicleCollection vehicles;
 
 

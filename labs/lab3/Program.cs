@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 using lab1.models.Drivers;
 using lab1.models.Vehicles;
@@ -60,6 +61,8 @@ namespace lab1
 
             // serialization
 
+
+
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream("data.dat", FileMode.OpenOrCreate))
             {
@@ -70,6 +73,18 @@ namespace lab1
             using (FileStream fs = new FileStream("data.dat", FileMode.OpenOrCreate))
             {
                 Driver[] drs = (Driver[])formatter.Deserialize(fs);
+            }
+
+            using (FileStream fs = new FileStream("data_json.json", FileMode.OpenOrCreate))
+            {
+                string json = JsonConvert.SerializeObject(new Driver[] { dr1, dr2, (Driver)dr6 }, Formatting.Indented);
+                byte[] info = new UTF8Encoding(true).GetBytes(json);
+                fs.Write(info, 0, info.Length);
+            }
+
+            {
+                string json = File.ReadAllText("data_json.json");
+                Driver[] drs = JsonConvert.DeserializeObject<Driver[]>(json);
             }
 
             Console.WriteLine("\nPress any key");

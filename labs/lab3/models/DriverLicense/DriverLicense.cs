@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 using lab1.models.Other;
 using lab1.models.Drivers;
 
 namespace lab1.models.DriverLicense
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Serializable]
     public class DriverLicense
     {
+        [JsonProperty]
         private readonly Driver owner;
+        [JsonProperty]
         private bool is_active = true;
+        [JsonProperty]
         private SortedDictionary<Categories, LicenseInfo> lcategories;
 
         public class LicenseInfo
