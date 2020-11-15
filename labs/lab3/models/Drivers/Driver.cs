@@ -35,6 +35,33 @@ namespace lab1.models.Drivers
         [JsonProperty]
         private bool is_alive = true;
 
+        #region useless delegates
+
+        public delegate void DriverDeathDelegate2(ref bool is_alive);
+
+        // anonym
+        DriverDeathDelegate2 handler = delegate (ref bool is_alive)
+        {
+            is_alive = false;
+        };
+
+        // lambda
+        DriverDeathDelegate2 lambda_handler = (ref bool is_alive) => is_alive = false;
+
+        // action
+        Action action_handler;
+
+        // func
+        bool FuncForFunc()
+        {
+            Death();
+            return true;
+        }
+        Func<bool> func_handler;
+
+        #endregion
+
+
         [JsonProperty]
         protected SortedDictionary<Categories, uint> time_experience;
 
@@ -64,11 +91,13 @@ namespace lab1.models.Drivers
         protected Driver()
         {
             drivers_amount++;
-            //time_experience = new SortedDictionary<Categories, uint>();
-            //vehicles = new SortedDictionary<string, AVehicle>();
             DriverDeathEvent += Death;
             time_experience = new SortedDictionary<Categories, uint>();
             vehicles = new VehicleCollection();
+
+            // 1.c
+            action_handler = Death;
+            func_handler = FuncForFunc;
         }
 
         #endregion
@@ -107,7 +136,14 @@ namespace lab1.models.Drivers
                 if (DeathInAccident())
                 {
                     DriverDeathEvent?.Invoke();
+
+                    //handler(ref is_alive); // anon
+                    //lambda_handler(ref is_alive); // lambda
+                    //action_handler(); // action
+                    //bool t = func_handler(); // func
+
                     return DrivingResult.Death;
+
                 }
                 else
                 {
@@ -122,7 +158,7 @@ namespace lab1.models.Drivers
             double factor = GetDrivinngProcessFactor() * crash_factor;
             double fate = rand.NextDouble() * 100;
             bool result = fate <= factor;
-            //return true;    // подкрутка для демонстрации
+            return true;    // подкрутка для демонстрации
             return result;
         }
 
@@ -131,7 +167,7 @@ namespace lab1.models.Drivers
             double factor = GetDrivinngProcessFactor() * death_factor;
             double fate = rand.NextDouble() * 100;
             bool result = fate <= factor;
-            //return true;    // подкрутка для демонстрации
+            return true;    // подкрутка для демонстрации
             return result;
         }
 

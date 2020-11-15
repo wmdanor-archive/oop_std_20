@@ -21,6 +21,7 @@ namespace lab1.models.DriverLicense
         [JsonProperty]
         private SortedDictionary<Categories, LicenseInfo> lcategories;
 
+
         public class LicenseInfo
         {
             public LicenseInfo(DateTime issued, int duration_years)

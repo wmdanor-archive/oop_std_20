@@ -59,6 +59,8 @@ namespace lab1
             Console.WriteLine("dr1 is_alive - {0}", dr1.IsAlive);
             Console.WriteLine("dr1 license is active - {0}", lic1.IsActive);
 
+            return;
+
             // serialization
 
 
