@@ -8,6 +8,19 @@ using Newtonsoft.Json;
 using lab1.models.Other;
 using lab1.models.Vehicles;
 
+public static class Ext
+{
+    public static uint SumValues(this SortedDictionary<Categories, uint> dict)
+    {
+        uint result = 0;
+        foreach (KeyValuePair<Categories, uint> entry in dict)
+        {
+            result += entry.Value;
+        }
+        return result;
+    }
+}
+
 namespace lab1.models.Drivers
 {
     [JsonObject(MemberSerialization.OptIn)]
@@ -220,12 +233,13 @@ namespace lab1.models.Drivers
         {
             get
             {
-                uint result = 0;
-                foreach (KeyValuePair<Categories, uint> entry in time_experience)
-                {
-                    result += entry.Value;
-                }
-                return result;
+                //uint result = 0;
+                //foreach (KeyValuePair<Categories, uint> entry in time_experience)
+                //{
+                //    result += entry.Value;
+                //}
+                //return result;
+                return time_experience.SumValues();
             }
         }
 
