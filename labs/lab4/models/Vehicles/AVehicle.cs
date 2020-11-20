@@ -16,7 +16,7 @@ namespace lab1.models.Vehicles
         protected override JsonConverter ResolveContractConverter(Type objectType)
         {
             if (typeof(AVehicle).IsAssignableFrom(objectType) && !objectType.IsAbstract)
-                return null; // pretend TableSortRuleConvert is not specified (thus avoiding a stack overflow)
+                return null;
             return base.ResolveContractConverter(objectType);
         }
     }
@@ -53,7 +53,7 @@ namespace lab1.models.Vehicles
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException(); // won't be called because CanWrite returns false
+            throw new NotImplementedException();
         }
     }
 

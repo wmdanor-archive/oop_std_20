@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="lab1.models.DriverLicense.DriverLicense" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAACAQAgASAEgCAAgAAAAABAAAAAAABAAAIAAA=</HashCode>
+      <FileName>models\DriverLicense\DriverLicense.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Drivers.AmateurDriver" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>models\Drivers\AmateurDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Drivers.Driver" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwCEgpiAQBAAwAAgCEgAQAYAAAAhgEAgAhgIAIQAAAA=</HashCode>
+      <FileName>models\Drivers\Driver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="lab1.models.Drivers.ExperiencedDriver" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>models\Drivers\ExperiencedDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ext" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\Drivers\Driver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.UserDefinedExceptions.SmallAgeException" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>models\UserDefinedExceptions\SmallAgeException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.UserDefinedExceptions.SmallExperienceException" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAA=</HashCode>
+      <FileName>models\UserDefinedExceptions\SmallExperienceException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Vehicles.AVehicleSpecifiedConcreteClassConverter" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>models\Vehicles\AVehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Vehicles.AVehicleConverter" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAEAAAAAAAAAAAAAAAEAAAAAAACAA=</HashCode>
+      <FileName>models\Vehicles\AVehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Vehicles.AVehicle" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAEQAAQAAAAAAAQAAABAQAAQAAIABAAGDAA=</HashCode>
+      <FileName>models\Vehicles\AVehicle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="lab1.models.Vehicles.Car" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\Vehicles\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Vehicles.Motorcicle" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\Vehicles\Motorcicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab1.models.Vehicles.VehicleCollection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAACgAACAABAACIAAFAQCBAAIAEAECAAAAABQIAA=</HashCode>
+      <FileName>models\Vehicles\VehicleCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="lab1.Program" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="lab1.models.Drivers.IDrivingExperience" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAgAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAQAAAA=</HashCode>
+      <FileName>models\Drivers\IDrivingExperience.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="lab1.models.Drivers.IPerson" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAAAAAAAAAAAAAAAEAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>models\Drivers\IPerson.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="lab1.models.Drivers.IVehicleOwner" Collapsed="true">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>models\Drivers\IVehicleOwner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="lab1.models.Other.Categories" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAADCAAAAAAAAAAAAAAAAAGAJAAAApAMEAAA=</HashCode>
+      <FileName>models\Other\Categories.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="lab1.models.Other.DrivingResult" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAAAAAQAAAAAAAAAAAAAAAgAAAAAgAAAIAAAAAAA=</HashCode>
+      <FileName>models\Other\DrivingResult.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

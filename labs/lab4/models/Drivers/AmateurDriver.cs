@@ -63,7 +63,6 @@ namespace lab1.models.Drivers
             {
                 if (exp > experience)
                 {
-                    //uint overall = this.OverrallExperience;
                     uint overall = ((IDrivingExperience)this).OverrallExperience;
                     uint difference = exp - experience;
                     if (overall - difference < 5) return false;
