@@ -44,9 +44,6 @@ namespace lab1
             AVehicle veh1 = new Motorcicle("hf7834h87h32487hc8", Categories.A1);
             AVehicle veh2 = new Car("hjkfdjkadhkjf2", Categories.B, "Lul car", 0, 1596, 88, false);
 
-            //VehicleCollection coll = new VehicleCollection();
-            //coll.Add(veh1);
-
             dr1.AddVehicle(veh1);
 
             foreach (AVehicle veh in dr1.Vehicles)
@@ -61,34 +58,6 @@ namespace lab1
             Console.WriteLine("dr1 is_alive - {0}", dr1.IsAlive);
             Console.WriteLine("dr1 license is active - {0}", lic1.IsActive);
 
-            #region serialization
-
-            //BinaryFormatter formatter = new BinaryFormatter();
-            //using (FileStream fs = new FileStream("data.dat", FileMode.OpenOrCreate))
-            //{
-            //    formatter.Serialize(fs, new Driver[] { dr1, dr2, (Driver)dr6 });
-            //}
-
-            //using (FileStream fs = new FileStream("data.dat", FileMode.OpenOrCreate))
-            //{
-            //    Driver[] drs = (Driver[])formatter.Deserialize(fs);
-            //}
-
-            //using (FileStream fs = new FileStream("data_json.json", FileMode.OpenOrCreate))
-            //{
-            //    string json = JsonConvert.SerializeObject(new Driver[] { dr1, dr2, (Driver)dr6 }, Formatting.Indented);
-            //    byte[] info = new UTF8Encoding(true).GetBytes(json);
-            //    fs.Write(info, 0, info.Length);
-            //}
-
-            //{
-            //    string json = File.ReadAllText("data_json.json");
-            //    Driver[] drs = JsonConvert.DeserializeObject<Driver[]>(json);
-            //}
-
-            #endregion
-
-            // gc
 
             VehicleCollection vc1 = new VehicleCollection();
             Console.WriteLine("MaxGen {0}", GC.MaxGeneration);
@@ -115,34 +84,6 @@ namespace lab1
             GC.Collect();
             Console.WriteLine("Mem {0}", GC.GetTotalMemory(false));
             GC.WaitForPendingFinalizers();
-
-            // weakref
-
-            //Dictionary<int, WeakReference> cache = default;
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    cache.Add(i, new WeakReference(new Data(i), false));
-            //}
-
-            //Random r = new Random();
-            //int c = 0;
-
-            //for (int i = 0; i < cache.Count; i++)
-            //{
-            //    int index = r.Next(cache.Count);
-
-            //    // Access the object by getting a property value.
-            //    Data d = cache[index].Target as Data;
-            //    if (d == null)
-            //    {
-            //        c++;
-            //        cache[index].Target = new Data(index);
-            //        d = cache[index].Target as Data;
-            //    }
-            //    string DataName = d.Name;
-            //}
-
-            //Console.WriteLine("{0}, {1}", c, cache.Count);
 
             Console.WriteLine("");
             WeakReferenceTracker tracker = new WeakReferenceTracker(new Data(10), false);
