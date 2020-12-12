@@ -8,7 +8,7 @@ namespace Task3
 {
     public class Dispencer
     {
-        private CocktailDict _cocktails;
+        private readonly CocktailDict _cocktails = new CocktailDict();
 
         public void AddCocktail(Cocktail alcoholic, Cocktail nonAlcoholic)
         {
@@ -64,32 +64,61 @@ namespace Task3
     {
         public string Name { get; set; }
         public bool Alcoholic { get; set; }
-        public List<Ingridient> Ingridients { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
 
-        public Cocktail(string name, bool alcoholic, params Ingridient[] ingridients)
+        public Cocktail(string name, bool alcoholic, params Ingredient[] ingredients)
         {
             Name = name;
             Alcoholic = alcoholic;
-            Ingridients = new List<Ingridient>(ingridients);
+            Ingredients = new List<Ingredient>(ingredients);
+        }
+
+        public override string ToString()
+        {
+            string res = "Name:" + Name + "(" + (Alcoholic ? "alcoholic" : "non-alcoholic") + ")";
+            return res;
         }
     }
 
-    public class Ingridient
+    public class Ingredient
     {
         public string Name { get; set; }
         public double Volume { get; set; }
+
+        public Ingredient(string name, double volume)
+        {
+            Name = name;
+            Volume = volume;
+        }
     }
 
     public class Person
     {
         public string Name { get; set; }
         public int Age { get; set; }
+
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
     }
 
     class Program
     {
         static void Main(string[] args)
         {
+            var dispencer = new Dispencer();
+
+            dispencer.AddCocktail(new Cocktail("Mojito", true, new Ingredient[2]), new Cocktail("Mojito", false, new Ingredient[2]));
+
+            var person1 = new Person("Tom", 20);
+            var person2 = new Person("Jimmy", 17);
+
+            Console.WriteLine(dispencer.Dispence(person1, "Mojito"));
+            Console.WriteLine(dispencer.Dispence(person2, "Mojito"));
+
+            Console.ReadKey();
         }
     }
 }
