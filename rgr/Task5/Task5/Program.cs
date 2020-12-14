@@ -15,11 +15,11 @@ namespace Task5
             return successor;
         }
 
-        public virtual string Handle(string lastCharacter)
+        public virtual string Handle(string stage)
         {
             if (_successor != null)
             {
-                return _successor.Handle(lastCharacter);
+                return _successor.Handle(stage);
             }
             else
             {
@@ -30,90 +30,90 @@ namespace Task5
 
     public class GrandfatherHandler : RepkaHandler
     {
-        public override string Handle(string lastCharacter)
+        public override string Handle(string stage)
         {
-            if (lastCharacter == "Grandfather")
+            if (stage == "Grandfather")
             {
                 return "Repka is stronger than grandfather.";
             }
             else
             {
-                return base.Handle(lastCharacter);
+                return base.Handle(stage);
             }
         }
     }
 
     public class GrandmotherHandler : RepkaHandler
     {
-        public override string Handle(string lastCharacter)
+        public override string Handle(string stage)
         {
-            if (lastCharacter == "Grandmother")
+            if (stage == "Grandmother")
             {
                 return "Repka is stronger than grandfather and grandmother taken together.";
             }
             else
             {
-                return base.Handle(lastCharacter);
+                return base.Handle(stage);
             }
         }
     }
 
     public class GranddaughterHandler : RepkaHandler
     {
-        public override string Handle(string lastCharacter)
+        public override string Handle(string stage)
         {
-            if (lastCharacter == "Granddaughter")
+            if (stage == "Granddaughter")
             {
                 return "Repka is stronger than grandfather, grandmother and granddaughter taken together.";
             }
             else
             {
-                return base.Handle(lastCharacter);
+                return base.Handle(stage);
             }
         }
     }
 
     public class DogHandler : RepkaHandler
     {
-        public override string Handle(string lastCharacter)
+        public override string Handle(string stage)
         {
-            if (lastCharacter == "Dog")
+            if (stage == "Dog")
             {
                 return "Repka is stronger than grandfather, grandmother, granddaughter and dog taken together.";
             }
             else
             {
-                return base.Handle(lastCharacter);
+                return base.Handle(stage);
             }
         }
     }
 
     public class CatHandler : RepkaHandler
     {
-        public override string Handle(string lastCharacter)
+        public override string Handle(string stage)
         {
-            if (lastCharacter == "Cat")
+            if (stage == "Cat")
             {
                 return "Repka is stronger than grandfather, grandmother, granddaughter, dog and cat taken together.";
             }
             else
             {
-                return base.Handle(lastCharacter);
+                return base.Handle(stage);
             }
         }
     }
 
     public class MouseHandler : RepkaHandler
     {
-        public override string Handle(string lastCharacter)
+        public override string Handle(string stage)
         {
-            if (lastCharacter == "Mouse")
+            if (stage == "Mouse")
             {
                 return "Repka is defeated by the joint efforts of grandfather, grandmother, granddaughter, dog, cat and mouse.";
             }
             else
             {
-                return base.Handle(lastCharacter);
+                return base.Handle(stage);
             }
         }
     }
