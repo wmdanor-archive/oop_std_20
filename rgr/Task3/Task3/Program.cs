@@ -10,9 +10,9 @@ namespace Task3
     {
         private readonly CocktailDict _cocktails = new CocktailDict();
 
-        public void AddCocktail(Cocktail alcoholic, Cocktail nonAlcoholic)
+        public void AddCocktail(string name, List<Ingredient> alcoholic, List<Ingredient> nonAlcoholic)
         {
-            _cocktails.Add(alcoholic, nonAlcoholic);
+            _cocktails.Add(name, alcoholic, nonAlcoholic);
         }
 
         public bool RemoveCocktail(string cocktailName)
@@ -30,11 +30,9 @@ namespace Task3
     {
         private readonly Dictionary<string, CocktailPair> _dict = new Dictionary<string, CocktailPair>();
 
-        public void Add(Cocktail alcoholic, Cocktail nonAlcoholic)
+        public void Add(string name, List<Ingredient> alcoholic, List<Ingredient> nonAlcoholic)
         {
-            if (alcoholic.Name != nonAlcoholic.Name) return;
-
-            _dict.Add(alcoholic.Name, new CocktailPair { alcoholic = alcoholic, nonAlcoholic = nonAlcoholic });
+            _dict.Add(name, new CocktailPair { alcoholic = new Cocktail(name, true, alcoholic), nonAlcoholic = new Cocktail(name, false, nonAlcoholic) });
         }
 
         public bool Remove(string name)
@@ -66,11 +64,11 @@ namespace Task3
         public bool Alcoholic { get; set; }
         public List<Ingredient> Ingredients { get; set; }
 
-        public Cocktail(string name, bool alcoholic, params Ingredient[] ingredients)
+        public Cocktail(string name, bool alcoholic,  List<Ingredient> ingredients)
         {
             Name = name;
             Alcoholic = alcoholic;
-            Ingredients = new List<Ingredient>(ingredients);
+            Ingredients = ingredients;
         }
 
         public override string ToString()
@@ -110,7 +108,7 @@ namespace Task3
         {
             var dispencer = new Dispencer();
 
-            dispencer.AddCocktail(new Cocktail("Mojito", true, new Ingredient[2]), new Cocktail("Mojito", false, new Ingredient[2]));
+            dispencer.AddCocktail("Mojito", new List<Ingredient>(2), new List<Ingredient>(2));
 
             var person1 = new Person("Tom", 20);
             var person2 = new Person("Jimmy", 17);

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Task1.CampComponent">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIABAAAAAAAAAAAAABQQAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>CampComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task1.CampComposite">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAABAAAAAAAAAAAAABQAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>CampComposite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task1.Child">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAABAAAAAAAAAAAAABQAAAAAAAAAAAAACAAAACAA=</HashCode>
+      <FileName>Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task1.Program" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAACAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
