@@ -163,12 +163,12 @@ namespace Task4
             // just work imitation next
 
             int times = (int)(Math.Abs(deltaHumidity) / 0.05);
-            double dt = deltaHumidity >= 0 ? 0.05 : -0.05;
+            double dh = deltaHumidity >= 0 ? 0.05 : -0.05;
 
             for (int i = 0; i < times && !_toStopRunning; i++)
             {
                 Thread.Sleep(100);
-                Interlocked.Exchange(ref _currentHumidity, _currentHumidity + 0.05);
+                Interlocked.Exchange(ref _currentHumidity, _currentHumidity + dh);
             }
 
             _running = false;
@@ -252,8 +252,19 @@ namespace Task4
         static void Main(string[] args)
         {
             var controller = new ClimateController(new ClimateMode(23, 10));
+            controller.Add("colder", new ClimateMode(20, 5));
 
             Console.WriteLine(controller.CurrentState);
+
+            while (true)
+            {
+                if (Console.ReadKey().KeyChar == 'q') break;
+
+                Console.WriteLine(controller.CurrentState);
+            }
+
+            Console.WriteLine("Setting t = 20, h = 5");
+            controller.ChooseMode("colder");
 
             while (true)
             {
