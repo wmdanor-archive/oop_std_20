@@ -6,13 +6,37 @@ using System.Threading.Tasks;
 
 namespace Task3
 {
-    public class Dispencer
+    public class Kiosk
     {
-        private readonly CocktailDict _cocktails = new CocktailDict();
+        private readonly Dispenser _alcoholicDispenser = new Dispenser(), _nonAlcoholicDispenser = new Dispenser();
 
-        public void AddCocktail(string name, List<Ingredient> alcoholic, List<Ingredient> nonAlcoholic)
+        public void AddCocktail(string name, CocktailRecipe alcoholicRecipe, CocktailRecipe nonAlcoholicRecipe)
         {
-            _cocktails.Add(name, alcoholic, nonAlcoholic);
+            _alcoholicDispenser.AddCocktail(new Cocktail(name, true, alcoholicRecipe));
+            _nonAlcoholicDispenser.AddCocktail(new Cocktail(name, false, nonAlcoholicRecipe));
+        }
+
+        public bool RemoveCocktail(string name)
+        {
+            if (!_alcoholicDispenser.RemoveCocktail(name)) return false;
+            _nonAlcoholicDispenser.RemoveCocktail(name);
+            return true;
+        }
+
+        public Cocktail GetCocktail(Person person, string cocktailName)
+        {
+            if (person.Age < 18) return _nonAlcoholicDispenser.Dispence(cocktailName);
+            else return _alcoholicDispenser.Dispence(cocktailName);
+        }
+    }
+
+    public class Dispenser
+    {
+        private readonly Dictionary<string, Cocktail> _cocktails = new Dictionary<string, Cocktail>();
+
+        public void AddCocktail(Cocktail cocktail)
+        {
+            _cocktails.Add(cocktail.Name, cocktail);
         }
 
         public bool RemoveCocktail(string cocktailName)
@@ -20,41 +44,9 @@ namespace Task3
             return _cocktails.Remove(cocktailName);
         }
 
-        public Cocktail Dispence(Person person, string cocktailName)
+        public Cocktail Dispence(string cocktailName)
         {
-            return _cocktails[cocktailName, person.Age >= 18];
-        }
-    }
-
-    public class CocktailDict
-    {
-        private readonly Dictionary<string, CocktailPair> _dict = new Dictionary<string, CocktailPair>();
-
-        public void Add(string name, List<Ingredient> alcoholic, List<Ingredient> nonAlcoholic)
-        {
-            _dict.Add(name, new CocktailPair { alcoholic = new Cocktail(name, true, alcoholic), nonAlcoholic = new Cocktail(name, false, nonAlcoholic) });
-        }
-
-        public bool Remove(string name)
-        {
-            return _dict.Remove(name);
-        }
-
-        public Cocktail this[string name, bool alcoholic]
-        {
-            get
-            {
-                CocktailPair pair;
-                if (_dict.TryGetValue(name, out pair))
-                    if (alcoholic) return pair.alcoholic;
-                    else return pair.nonAlcoholic;
-                else return null;
-            }
-        }
-
-        public struct CocktailPair
-        {
-            public Cocktail alcoholic, nonAlcoholic;
+            return _cocktails[cocktailName];
         }
     }
 
@@ -62,13 +54,13 @@ namespace Task3
     {
         public string Name { get; set; }
         public bool Alcoholic { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
+        public CocktailRecipe Recipe { get; set; }
 
-        public Cocktail(string name, bool alcoholic,  List<Ingredient> ingredients)
+        public Cocktail(string name, bool alcoholic, CocktailRecipe recipe)
         {
             Name = name;
             Alcoholic = alcoholic;
-            Ingredients = ingredients;
+            Recipe = recipe;
         }
 
         public override string ToString()
@@ -76,6 +68,11 @@ namespace Task3
             string res = "Name:" + Name + "(" + (Alcoholic ? "alcoholic" : "non-alcoholic") + ")";
             return res;
         }
+    }
+
+    public class CocktailRecipe
+    {
+        public List<Ingredient> Ingredients { get; set; }
     }
 
     public class Ingredient
@@ -116,7 +113,14 @@ namespace Task3
             Console.WriteLine(dispencer.Dispence(person1, "Mojito"));
             Console.WriteLine(dispencer.Dispence(person2, "Mojito"));
 
+            Method(person1);
+
             Console.ReadKey();
+        }
+
+        static void Method(Person person1)
+        {
+            //
         }
     }
 }
