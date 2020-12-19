@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task3
 {
@@ -103,24 +100,17 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            var dispencer = new Dispencer();
+            var kiosk = new Kiosk();
 
-            dispencer.AddCocktail("Mojito", new List<Ingredient>(2), new List<Ingredient>(2));
+            kiosk.AddCocktail("Mojito", new CocktailRecipe(), new CocktailRecipe());
 
-            var person1 = new Person("Tom", 20);
-            var person2 = new Person("Jimmy", 17);
+            var majorPerson = new Person("Tom", 20);
+            var minorPerson = new Person("Jimmy", 17);
 
-            Console.WriteLine(dispencer.Dispence(person1, "Mojito"));
-            Console.WriteLine(dispencer.Dispence(person2, "Mojito"));
-
-            Method(person1);
+            Console.WriteLine(kiosk.GetCocktail(majorPerson, "Mojito"));
+            Console.WriteLine(kiosk.GetCocktail(minorPerson, "Mojito"));
 
             Console.ReadKey();
-        }
-
-        static void Method(Person person1)
-        {
-            //
         }
     }
 }
