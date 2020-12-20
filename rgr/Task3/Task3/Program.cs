@@ -5,46 +5,97 @@ namespace Task3
 {
     public class Kiosk
     {
-        private readonly Dispenser _alcoholicDispenser = new Dispenser(), _nonAlcoholicDispenser = new Dispenser();
+        private readonly Dictionary<string, Cocktail> _alcoholic = new Dictionary<string, Cocktail>(),
+                                                      _nonAlcoholic = new Dictionary<string, Cocktail>();
+        private readonly CocktailDispenserStrategy _dispenser = new CocktailDispenserStrategy();
 
         public void AddCocktail(string name, CocktailRecipe alcoholicRecipe, CocktailRecipe nonAlcoholicRecipe)
         {
-            _alcoholicDispenser.AddCocktail(new Cocktail(name, true, alcoholicRecipe));
-            _nonAlcoholicDispenser.AddCocktail(new Cocktail(name, false, nonAlcoholicRecipe));
+            _alcoholic.Add(name, new Cocktail(name, true, alcoholicRecipe));
+            _nonAlcoholic.Add(name, new Cocktail(name, false, nonAlcoholicRecipe));
         }
 
         public bool RemoveCocktail(string name)
         {
-            if (!_alcoholicDispenser.RemoveCocktail(name)) return false;
-            _nonAlcoholicDispenser.RemoveCocktail(name);
+            if (!_alcoholic.Remove(name)) return false;
+            _nonAlcoholic.Remove(name);
             return true;
         }
 
         public Cocktail GetCocktail(Person person, string cocktailName)
         {
-            if (person.Age < 18) return _nonAlcoholicDispenser.Dispence(cocktailName);
-            else return _alcoholicDispenser.Dispence(cocktailName);
+            SetDispenser(person);
+
+            return _dispenser.GetCocktail(cocktailName);
+        }
+
+        private void SetDispenser(Person person)
+        {
+            if (person.Age < 18) _dispenser.SetStrategy(new AlcoholicDispenser(_alcoholic));
+            else _dispenser.SetStrategy(new NonAlcoholicDispenser(_nonAlcoholic));
         }
     }
 
-    public class Dispenser
+    public class CocktailDispenserStrategy
     {
-        private readonly Dictionary<string, Cocktail> _cocktails = new Dictionary<string, Cocktail>();
+        private ICocktailDispenser _cocktailDispenser;
 
-        public void AddCocktail(Cocktail cocktail)
+        public Cocktail GetCocktail(string name)
         {
-            _cocktails.Add(cocktail.Name, cocktail);
+            if (_cocktailDispenser == null) throw new InvalidOperationException("Cocktail dispenser is not defined");
+
+            return _cocktailDispenser.DispenseCocktail(name);
         }
 
-        public bool RemoveCocktail(string cocktailName)
+        public void SetStrategy(ICocktailDispenser cocktailDispenser)
         {
-            return _cocktails.Remove(cocktailName);
+            _cocktailDispenser = cocktailDispenser;
+        }
+    }
+
+    public class AlcoholicDispenser : ICocktailDispenser
+    {
+        private readonly IDictionary<string, Cocktail> _cocktails = new Dictionary<string, Cocktail>();
+
+        public AlcoholicDispenser(IDictionary<string, Cocktail> cocktails)
+        {
+            foreach (var pair in cocktails)
+            {
+                if (!pair.Value.Alcoholic) throw new ArgumentException("Cocktails must be alcoholic");
+            }
+
+            _cocktails = cocktails;
         }
 
-        public Cocktail Dispence(string cocktailName)
+        public Cocktail DispenseCocktail(string cocktailName)
         {
             return _cocktails[cocktailName];
         }
+    }
+
+    public class NonAlcoholicDispenser : ICocktailDispenser
+    {
+        private readonly IDictionary<string, Cocktail> _cocktails = new Dictionary<string, Cocktail>();
+
+        public NonAlcoholicDispenser(IDictionary<string, Cocktail> cocktails)
+        {
+            foreach (var pair in cocktails)
+            {
+                if (pair.Value.Alcoholic) throw new ArgumentException("Cocktails must be non-alcoholic");
+            }
+
+            _cocktails = cocktails;
+        }
+
+        public Cocktail DispenseCocktail(string cocktailName)
+        {
+            return _cocktails[cocktailName];
+        }
+    }
+
+    public interface ICocktailDispenser
+    {
+        Cocktail DispenseCocktail(string cocktailName);
     }
 
     public class Cocktail
